@@ -20,6 +20,7 @@ public class Main {
         Month october = new Month("october");
         Month november = new Month("november");
         Month december = new Month("december");
+        Month december1 = new Month("december");
 
         ArrayList<Month> months = new ArrayList<>();
         months.add(january);
@@ -61,15 +62,17 @@ public class Main {
         setOfMonths.add(november);
         setOfMonths.add(december);
 
+        System.out.println();
         System.out.println("Set of months");
         for(Month month : setOfMonths){
             System.out.println(month);
         }
 
         setOfMonths.add(august);
-        setOfMonths.add(december);
+        setOfMonths.add(december1);
 
 
+        System.out.println();
         System.out.println("Set of months, check if it adds repeated elements");
         Iterator<Month> monthIt = setOfMonths.iterator();
         for(int i = 0; i < setOfMonths.size(); i++){
@@ -77,6 +80,7 @@ public class Main {
             System.out.println(i + " " + month);
         }
 
+        System.out.println();
         System.out.println("Loop list with Iterator");
         Iterator<Month> monthIterator = setOfMonths.iterator();
 
