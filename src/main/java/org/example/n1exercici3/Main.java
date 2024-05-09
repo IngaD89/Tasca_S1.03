@@ -37,7 +37,7 @@ public class Main {
         ArrayList<String> keyList = new ArrayList<>(countryCapitalMap.keySet());
         Random random = new Random();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 10; i++) {
             randomKey = keyList.get(random.nextInt(keyList.size()));
             System.out.println("Adivina capital de " + randomKey);
             response = scanner.nextLine();
