@@ -29,8 +29,8 @@ public class Tavern {
     @Override
     public String toString() {
         return
-                "name = " + this.name  +
-                "   score = " + this.score;
+                "" + this.name  +
+                " " + this.score;
     }
 
 
