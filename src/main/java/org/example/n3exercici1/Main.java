@@ -7,11 +7,11 @@ import java.util.*;
 
 public class Main {
 
+       static int option = 0;
     public static void main(String[] args)  {
 
 
         Scanner scanner = new Scanner(System.in);
-        int option = 0;
 
         do {
             System.out.println("""
@@ -34,20 +34,26 @@ public class Main {
                 case 1:
                     break;
                 case 2:
-                    compareName();
+                    readFromFile();
+                    //compareName();
                     break;
                 case 3:
-                    compareNameReverse();
+                    readFromFile();
+                   // compareNameReverse();
                     break;
                 case 4:
-                    compareLastName();
+                    readFromFile();
+                    //compareLastName();
                     break;
                 case 5:
-                    compareLastNameReverse();
+                    readFromFile();
+                    //compareLastNameReverse();
                     break;
                 case 6:
+                    readFromFile();
                     break;
                 case 7:
+                    readFromFile();
                     break;
                 case 0:
                     System.out.println("Hasta pronto");
@@ -58,8 +64,28 @@ public class Main {
 
     }
 
-    public static Set<Person> readFromFile(){
-        Set<Person> personList = new HashSet<>();
+    public static void readFromFile(){
+        Set<Person> personList = null;
+
+        if(option == 2){
+            CompareByName comparePersonByName = new CompareByName();
+            personList = new TreeSet<>(comparePersonByName);
+        } else if(option == 3){
+            CompareByName comparePersonByName = new CompareByName();
+            personList = new TreeSet<>(comparePersonByName.reversed());
+        } else if (option == 4) {
+            CompareByLastName compareByLastName = new CompareByLastName();
+            personList = new TreeSet<>(compareByLastName);
+        } else if (option == 5) {
+            CompareByLastName compareByLastName = new CompareByLastName();
+            personList = new TreeSet<>(compareByLastName.reversed());
+        } else if (option == 6) {
+            CompareByDni compareByDni = new CompareByDni();
+            personList = new TreeSet<>(compareByDni);
+        } else if (option == 7) {
+            CompareByDni compareByDni = new CompareByDni();
+            personList = new TreeSet<>(compareByDni.reversed());
+        }
 
         Person person = null;
         File file = new File("src/main/resources/person.csv");
@@ -72,118 +98,20 @@ public class Main {
             while ((attributePosition = csvReader.readNext()) != null){
                 // attributePosition = line.split(",");
                 person = new Person(attributePosition);
-                System.out.println(person);
-                personList.add(person);
+                if(personList != null) {
+                    personList.add(person);
+                }
             }
-
-        } catch (Exception e) {
-            System.out.println("File not found exception");
-        }
-
-        return personList;
-    }
-
-    public static void compareName(){
-        CompareByName comparePersonByName = new CompareByName();
-        Set<Person> personList = new TreeSet<>(comparePersonByName);
-        Person person = null;
-
-        File file = new File("src/main/resources/person.csv");
-        try {
-            Reader reader = new FileReader(file);
-            CSVReader csvReader = new CSVReader(reader);
-            String[] attributePosition;
-            while ((attributePosition = csvReader.readNext()) != null){
-                // attributePosition = line.split(",");
-                person = new Person(attributePosition);
-                personList.add(person);
+            if(personList != null) {
+                System.out.println("_Nombre_____________Apellido_______________DNI");
+                for (Person p : personList) {
+                    System.out.println(p);
+                }
             }
-            System.out.println("_Nombre_____________Apellido_______________2DNI");
-            for (Person p : personList){
-                System.out.println(p);
-            }
-
         } catch (Exception e) {
             System.out.println("File not found exception");
         }
 
     }
-
-    public static void compareNameReverse(){
-        CompareByName comparePersonByName = new CompareByName();
-        Set<Person> personList = new TreeSet<>(comparePersonByName.reversed());
-        Person person = null;
-
-        File file = new File("src/main/resources/person.csv");
-        try {
-            Reader reader = new FileReader(file);
-            CSVReader csvReader = new CSVReader(reader);
-            String[] attributePosition;
-            while ((attributePosition = csvReader.readNext()) != null){
-                // attributePosition = line.split(",");
-                person = new Person(attributePosition);
-                personList.add(person);
-            }
-            System.out.println("_Nombre_____________Apellido_______________2DNI");
-            for (Person p : personList){
-                System.out.println(p);
-            }
-
-        } catch (Exception e) {
-            System.out.println("File not found exception");
-        }
-
-    }
-
-    public static void compareLastName(){
-        CompareByLastName compareByLastName = new CompareByLastName();
-        Set<Person> personList = new TreeSet<>(compareByLastName);
-        Person person = null;
-
-        File file = new File("src/main/resources/person.csv");
-        try {
-            Reader reader = new FileReader(file);
-            CSVReader csvReader = new CSVReader(reader);
-            String[] attributePosition;
-            while ((attributePosition = csvReader.readNext()) != null){
-                person = new Person(attributePosition);
-                personList.add(person);
-            }
-            System.out.println("_Nombre_____________Apellido_______________2DNI");
-            for (Person p : personList){
-                System.out.println(p);
-            }
-
-        } catch (Exception e) {
-            System.out.println("File not found exception");
-        }
-
-    }
-
-    public static void compareLastNameReverse(){
-        CompareByLastName compareByLastName = new CompareByLastName();
-        Set<Person> personList = new TreeSet<>(compareByLastName.reversed());
-        Person person = null;
-
-        File file = new File("src/main/resources/person.csv");
-        try {
-            Reader reader = new FileReader(file);
-            CSVReader csvReader = new CSVReader(reader);
-            String[] attributePosition;
-            while ((attributePosition = csvReader.readNext()) != null){
-                person = new Person(attributePosition);
-                personList.add(person);
-            }
-            System.out.println("_Nombre_____________Apellido_______________2DNI");
-            for (Person p : personList){
-                System.out.println(p);
-            }
-
-        } catch (Exception e) {
-            System.out.println("File not found exception");
-        }
-
-    }
-
 
 }
