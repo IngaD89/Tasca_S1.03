@@ -1,7 +1,7 @@
 package org.example.n2exercici1;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -21,5 +21,8 @@ public class Main {
         for (Restaurant rest : restaurants){
             System.out.println(rest);
         }
+
+       
+
     }
 }
