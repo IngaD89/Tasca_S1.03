@@ -1,6 +1,8 @@
 package org.example.n2exercici2;
 
-public class Tavern {
+import java.util.Comparator;
+
+public class Tavern implements Comparable<Tavern> {
     private String name;
     private int score;
 
@@ -25,6 +27,14 @@ public class Tavern {
         this.score = score;
     }
 
+    @Override
+    public int compareTo(Tavern anotherTavern) {
+        int compareValue = this.name.compareTo(anotherTavern.name);
+        if (compareValue != 0) {
+            return compareValue;
+        }
+        return Integer.compare(this.score, anotherTavern.score);
+    }
 
     @Override
     public String toString() {
@@ -32,7 +42,4 @@ public class Tavern {
                 "" + this.name  +
                 " " + this.score;
     }
-
-
-
 }

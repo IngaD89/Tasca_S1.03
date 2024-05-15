@@ -7,8 +7,9 @@ import java.util.*;
 
 public class Main {
 
-       static int option = 0;
-    public static void main(String[] args)  {
+    static int option = 0;
+
+    public static void main(String[] args) {
 
 
         Scanner scanner = new Scanner(System.in);
@@ -35,19 +36,15 @@ public class Main {
                     break;
                 case 2:
                     readFromFile();
-                    //compareName();
                     break;
                 case 3:
                     readFromFile();
-                   // compareNameReverse();
                     break;
                 case 4:
                     readFromFile();
-                    //compareLastName();
                     break;
                 case 5:
                     readFromFile();
-                    //compareLastNameReverse();
                     break;
                 case 6:
                     readFromFile();
@@ -60,17 +57,17 @@ public class Main {
                     break;
             }
             System.out.println();
-        }while (option != 0);
+        } while (option != 0);
 
     }
 
-    public static void readFromFile(){
+    public static void readFromFile() {
         Set<Person> personList = null;
 
-        if(option == 2){
+        if (option == 2) {
             CompareByName comparePersonByName = new CompareByName();
             personList = new TreeSet<>(comparePersonByName);
-        } else if(option == 3){
+        } else if (option == 3) {
             CompareByName comparePersonByName = new CompareByName();
             personList = new TreeSet<>(comparePersonByName.reversed());
         } else if (option == 4) {
@@ -87,22 +84,22 @@ public class Main {
             personList = new TreeSet<>(compareByDni.reversed());
         }
 
-        Person person = null;
-        File file = new File("src/main/resources/person.csv");
+        Person person;
         try {
+            File file = new File("src/main/resources/person.csv");
             Reader reader = new FileReader(file);
             CSVReader csvReader = new CSVReader(reader);
             // BufferedReader bufferedReader = new BufferedReader(reader);
             // String line = "";
             String[] attributePosition;
-            while ((attributePosition = csvReader.readNext()) != null){
+            while ((attributePosition = csvReader.readNext()) != null) {
                 // attributePosition = line.split(",");
                 person = new Person(attributePosition);
-                if(personList != null) {
+                if (personList != null) {
                     personList.add(person);
                 }
             }
-            if(personList != null) {
+            if (personList != null) {
                 System.out.println("_Nombre_____________Apellido_______________DNI");
                 for (Person p : personList) {
                     System.out.println(p);
